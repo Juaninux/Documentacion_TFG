@@ -356,6 +356,13 @@ kubectl apply -f awx.yml
 
 ![AWX tras personalización y certificados.](fotos/daedalus.png)
 
+![Ejemplo de proyecto conectado a github.](fotos/proyecto.png)
+
+![Ejemplo de plantilla indicando el playbook.](fotos/plantilla.png)
+
+![Ejemplo de playbook lanzado.](fotos/playbook.png)
+
+![Ejemplo de flujo de trabajo.](fotos/flujo.png)
 
 # Github
 
