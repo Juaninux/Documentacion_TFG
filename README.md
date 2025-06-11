@@ -456,6 +456,7 @@ Los objetivos generales y específicos han sido alcanzados, demostrando la viabi
 - https://github.com/vandreu82/ansible_rocks
 - https://github.com/Juaninux/Documentacion_TFG
 - https://gitlab.com/burruezo/pyapp
+- https://www.youtube.com/@VirtuStack
 
 
 
