@@ -1,5 +1,3 @@
-# Documentacion_TFG
-
 # Resumen
 
 VirtuStack desarrolla una solución integral para la gestión y sincronización automatizada de máquinas virtuales y usuarios en un entorno de infraestructura IT, utilizando un dashboard web propio y la plataforma de automatización AWX. La aplicación, construida con tecnologías modernas como Next.js, React, Node.js y MySQL, permite a los administradores crear, monitorizar y sincronizar recursos de forma segura y eficiente, integrando autenticación, ejecución remota de comandos con asistente de IA y gestión centralizada de credenciales y usuarios.
@@ -16,23 +14,23 @@ La automatización y la administración centralizada de infraestructuras virtual
 
 **- Objetivo General**
 
-    Desarrollar una plataforma web que integre la gestión de máquinas virtuales y su administación mediante IA y usuarios con AWX, permitiendo la automatización y sincronización de recursos de forma segura y eficiente.
+Desarrollar una plataforma web que integre la gestión de máquinas virtuales y su administación mediante IA y usuarios con AWX, permitiendo la automatización y sincronización de recursos de forma segura y eficiente.
 
 **- Objetivos Específicos**
 
-    Implementar un dashboard web intuitivo para la creación y gestión de máquinas virtuales y usuarios.
+- Implementar un dashboard web intuitivo para la creación y gestión de máquinas virtuales y usuarios.
 
-    Integrar la aplicación con AWX mediante su API REST, automatizando la creación y asociación de usuarios y organizaciones.
+- Integrar la aplicación con AWX mediante su API REST, automatizando la creación y asociación de usuarios y organizaciones.
 
-    Garantizar la seguridad en el almacenamiento y transmisión de credenciales, empleando hash bcrypt para contraseñas.
+- Garantizar la seguridad en el almacenamiento y transmisión de credenciales, empleando hash bcrypt para contraseñas.
 
-    Ejecutar comandos remotos en las VMs mediante SSH y reflejar los resultados en tiempo real con la asistencia de Gemini
+- Ejecutar comandos remotos en las VMs mediante SSH y reflejar los resultados en tiempo real con la asistencia de Gemini
 
-    Sincronizar el estado de las VMs y usuarios entre la base de datos local y AWX.
+- Sincronizar el estado de las VMs y usuarios entre la base de datos local y AWX.
 
-    Proporcionar un sistema robusto de manejo de errores y validación tanto en frontend como en backend.
+- Proporcionar un sistema robusto de manejo de errores y validación tanto en frontend como en backend.
 
-    Aprovechar el potencial de Ansible como herramienta de automatización mediante la creación de playbooks de infraestructura y despliegue.
+- Aprovechar el potencial de Ansible como herramienta de automatización mediante la creación de playbooks de infraestructura y despliegue.
 
 
 
@@ -72,6 +70,7 @@ La automatización y la administración centralizada de infraestructuras virtual
 
 ![Infraestructura](fotos/estructura.jpg)
 
+\newpage
 
 # Proxy nginx
 Configuración de proxy
@@ -186,7 +185,6 @@ Contenedor que comunica con DuckDns para el cambio de IP pública
 ![Portainer](fotos/portainer2.png)
 
 \newpage
-
 ```config
 services:
   duckdns:
@@ -209,11 +207,12 @@ services:
 
 # Wireguard
 
-![](fotos/wireguard1.png)
-![](fotos/wireguard2.png)
-![](fotos/wireguard3.png)
-
-\newpage
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.32\textheight]{fotos/wireguard.png}
+  \includegraphics[height=0.32\textheight]{fotos/wireguard2.png}
+  \includegraphics[height=0.32\textheight]{fotos/wireguard3.png}
+\end{figure}
 
 # DDNS
 
@@ -258,6 +257,13 @@ Este proyecto es una plataforma web para la gestión y automatización de máqui
 
 Recursos estáticos:
     Imágenes y archivos públicos se almacenan en la carpeta public/.
+
+## Resultados
+
+![VirtuStack landing page](fotos/virtustack.png)
+![VirtuStack landing page](fotos/virtustack2.png)
+![VirtuStack landing page](fotos/virtustack3.png)
+
 
 # AWX
 
@@ -405,12 +411,18 @@ Despliega un servidor router que integra DHCP (Kea) y DNS (BIND) para gestionar 
 
 Facilita la migración de máquinas virtuales desde un entorno local Debian/KVM a un entorno remoto Proxmox, garantizando la integridad y el funcionamiento tras el traslado.
 
+Por supuesto. Aquí tienes una versión más técnica y precisa del mismo contenido:
+
+---
+
 **Roles incluidos:**
 
-* **gather_vm_info**: Recopila información esencial de las máquinas a migrar, como discos y configuraciones de red, para facilitar el proceso de traslado.
-* **transfer_disks**: Gestiona la transferencia de los discos de las máquinas virtuales al nodo de destino, garantizando la integridad de los datos.
-* **proxmox_create_vm**: Prepara y crea las máquinas virtuales en el entorno Proxmox remoto, adaptando la configuración de hardware y almacenamiento.
+* **gather_vm_info**: Extrae información estructurada de las máquinas virtuales KVM a un fichero xml, incluyendo configuración de CPU, memoria, interfaces de red y dispositivos de almacenamiento. Esta información se almacena en formato xml para su posterior uso automatizado.
 
+* **transfer_disks**: Detecta el primer vmid libre a partir de un umbral definido, crea el directorio correspondiente en el nodo Proxmox remoto, y transfiere los discos de las VMs, junto con los archivos de configuración xml usando rsync, asegurando la consistencia mediante sincronización diferencial.
+
+* **proxmox_create_vm**: Automatiza la creación de máquinas virtuales en Proxmox a partir de los datos previamente recopilados. Define las VMs con los parámetros de hardware correctos, importa discos al almacenamiento LOCAL DE PROXMOX, y enlaza los discos a las máquinas.
+  
 # Resultados
 
 Se ha conseguido una integración completa y funcional entre el dashboard propio y AWX, permitiendo la gestión centralizada de máquinas virtuales y usuarios.
@@ -426,13 +438,18 @@ Los objetivos generales y específicos han sido alcanzados, demostrando la viabi
 
 # Webgrafía:
 
-SSL: 
-
-## 10. Referencias
-
 - [Let's Encrypt](https://letsencrypt.org/)
 - [DuckDNS](https://www.duckdns.org/)
 - [Certbot](https://certbot.eff.org/)
 - [Herramienta online para consultar registros TXT](https://toolbox.googleapps.com/apps/dig/)
 - [Proxmox](https://www.proxmox.com/en/)
 - [AWX](https://github.com/ansible/awx)
+
+## 10. Anexos 
+
+- https://github.com/vandreu82/ansible_rocks
+- https://github.com/Juaninux/Documentacion_TFG
+- https://gitlab.com/burruezo/pyapp
+
+
+
