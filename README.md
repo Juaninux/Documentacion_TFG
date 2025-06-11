@@ -196,8 +196,7 @@ services:
       - PGID=1000 #optional
       - TZ=Etc/UTC #optional
       - SUBDOMAINS=cromopolis
-      - TOKEN=cea1bdf0-d166-4061-b51a-1920e51ba9fe
-      - UPDATE_IP=ipv4 #optional
+      - TOKEN=x
       - LOG_FILE=false #optional
     volumes:
       - /root/docker/duckdns/config:/config #optional
